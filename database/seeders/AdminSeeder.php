@@ -1,0 +1,24 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+class AdminSeeder extends Seeder
+{
+    public function run(): void
+    {
+        User::updateOrCreate(
+            ['email' => 'admin@mail.com'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('admin123'),
+                'no_hp' => '081234567890',
+                'foto' => null,
+                'role' => 'admin',
+            ]
+        );
+    }
+}
