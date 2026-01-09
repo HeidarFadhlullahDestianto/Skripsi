@@ -22,36 +22,63 @@ class ImportController extends Controller
      */
     public function store(Request $request)
     {
+        // Validasi file
         $request->validate([
             'file' => 'required|mimes:xlsx,xls'
         ]);
 
+        // Load file Excel
         $spreadsheet = IOFactory::load(
             $request->file('file')->getPathname()
         );
 
+        // Ambil semua baris
         $rows = $spreadsheet->getActiveSheet()->toArray();
 
-        unset($rows[0]); // hapus header
+        // Hapus header
+        unset($rows[0]);
 
         foreach ($rows as $row) {
+
+            // Skip baris kosong
+            if (empty(array_filter($row))) {
+                continue;
+            }
+
             RuleLatihan::create([
-                'rentang_umur'      => $row[0] ?? null,
-                'kategori_umur'     => $row[1] ?? null,
-                'jenis_kelamin'     => $row[2] ?? null,
-                'tingkat_kesulitan' => $row[3] ?? null,
-                'tujuan_latihan'    => $row[4] ?? null,
-                'frekuensi'         => $row[5] ?? null,
-                'hari_1'            => $row[6] ?? null,
-                'hari_2'            => $row[7] ?? null,
-                'hari_3'            => $row[8] ?? null,
-                'hari_4'            => $row[9] ?? null,
-                'hari_5'            => $row[10] ?? null,
-                'hari_6'            => $row[11] ?? null,
-                'hari_7'            => $row[12] ?? null,
+                'rentang_umur'      => $row[0]  ?? null,
+                'kategori_umur'     => $row[1]  ?? null,
+                'jenis_kelamin'     => $row[2]  ?? null,
+                'tingkat_kesulitan' => $row[3]  ?? null,
+                'tujuan_latihan'    => $row[4]  ?? null,
+                'frekuensi'         => $row[5]  ?? null,
+
+                // Hari & Latihan (sesuai urutan Excel)
+                'hari_1'     => $row[6]  ?? null,
+                'latihan_1'  => $row[7]  ?? null,
+
+                'hari_2'     => $row[8]  ?? null,
+                'latihan_2'  => $row[9]  ?? null,
+
+                'hari_3'     => $row[10] ?? null,
+                'latihan_3'  => $row[11] ?? null,
+
+                'hari_4'     => $row[12] ?? null,
+                'latihan_4'  => $row[13] ?? null,
+
+                'hari_5'     => $row[14] ?? null,
+                'latihan_5'  => $row[15] ?? null,
+
+                'hari_6'     => $row[16] ?? null,
+                'latihan_6'  => $row[17] ?? null,
+
+                'hari_7'     => $row[18] ?? null,
+                'latihan_7'  => $row[19] ?? null,
             ]);
         }
 
-        return redirect()->back()->with('success', 'Data berhasil diimport');
+        return redirect()
+            ->back()
+            ->with('success', '✅ Data rule latihan berhasil diimport');
     }
 }

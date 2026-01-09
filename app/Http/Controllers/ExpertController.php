@@ -67,28 +67,43 @@ class ExpertController extends Controller
        SIMPAN JADWAL
     ========================= */
     public function save($id)
-    {
-        $rule = RuleLatihan::findOrFail($id);
+{
+    $rule = RuleLatihan::findOrFail($id);
 
-        SavedSchedule::create([
-            'user_id'         => auth()->id(),
-            'rule_latihan_id' => $rule->id,
-            'rentang_umur'    => $rule->rentang_umur,
-            'jenis_kelamin'   => $rule->jenis_kelamin,
-            'tujuan_latihan'  => $rule->tujuan_latihan,
-            'frekuensi'       => $rule->frekuensi,
-            'hari_1' => $rule->hari_1,
-            'hari_2' => $rule->hari_2,
-            'hari_3' => $rule->hari_3,
-            'hari_4' => $rule->hari_4,
-            'hari_5' => $rule->hari_5,
-            'hari_6' => $rule->hari_6,
-            'hari_7' => $rule->hari_7,
-        ]);
+    SavedSchedule::create([
+        'user_id'         => auth()->id(),
+        'rule_latihan_id' => $rule->id,
+        'rentang_umur'    => $rule->rentang_umur,
+        'jenis_kelamin'   => $rule->jenis_kelamin,
+        'tujuan_latihan'  => $rule->tujuan_latihan,
+        'frekuensi'       => $rule->frekuensi,
 
-        return redirect()->route('expert.saved')
-            ->with('success', '✅ Jadwal berhasil disimpan');
-    }
+        'hari_1'     => $rule->hari_1,
+        'latihan_1'  => $rule->latihan_1,
+
+        'hari_2'     => $rule->hari_2,
+        'latihan_2'  => $rule->latihan_2,
+
+        'hari_3'     => $rule->hari_3,
+        'latihan_3'  => $rule->latihan_3,
+
+        'hari_4'     => $rule->hari_4,
+        'latihan_4'  => $rule->latihan_4,
+
+        'hari_5'     => $rule->hari_5,
+        'latihan_5'  => $rule->latihan_5,
+
+        'hari_6'     => $rule->hari_6,
+        'latihan_6'  => $rule->latihan_6,
+
+        'hari_7'     => $rule->hari_7,
+        'latihan_7'  => $rule->latihan_7,
+    ]);
+
+    return redirect()->route('expert.saved')
+        ->with('success', '✅ Jadwal berhasil disimpan');
+}
+
 
     /* =========================
        HALAMAN JADWAL TERSIMPAN

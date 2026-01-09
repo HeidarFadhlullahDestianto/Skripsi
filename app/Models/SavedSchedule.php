@@ -18,12 +18,14 @@ class SavedSchedule extends Model
         'jenis_kelamin',
         'tujuan_latihan',
         'frekuensi',
-        'hari_1',
-        'hari_2',
-        'hari_3',
-        'hari_4',
-        'hari_5',
-        'hari_6',
-        'hari_7',
+    
+        'hari_1','latihan_1',
+        'hari_2','latihan_2',
+        'hari_3','latihan_3',
+        'hari_4','latihan_4',
+        'hari_5','latihan_5',
+        'hari_6','latihan_6',
+        'hari_7','latihan_7',
     ];
+    
 }

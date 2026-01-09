@@ -1,24 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container page-wrapper">
+<div class="pt-5 pt-md-0">
+<div class="container page-wrapper mt-4">
 
     <div class="card shadow border-0">
         <div class="card-body">
 
-            <h4 class="mb-3 text-center fw-bold">
+            <h4 class="mb-4 text-center fw-bold">
                 📅 Jadwal Latihan Mingguan
             </h4>
 
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Hari 1: {{ $rule->hari_1 }}</li>
-                <li class="list-group-item">Hari 2: {{ $rule->hari_2 }}</li>
-                <li class="list-group-item">Hari 3: {{ $rule->hari_3 }}</li>
-                <li class="list-group-item">Hari 4: {{ $rule->hari_4 }}</li>
-                <li class="list-group-item">Hari 5: {{ $rule->hari_5 }}</li>
-                <li class="list-group-item">Hari 6: {{ $rule->hari_6 }}</li>
-                <li class="list-group-item">Hari 7: {{ $rule->hari_7 }}</li>
-            </ul>
+            <div class="row g-3">
+                @for($i = 1; $i <= 7; $i++)
+                    @if($rule->{'hari_'.$i})
+                    <div class="col-12 col-md-6">
+                        <div class="border rounded p-3 h-100">
+
+                            {{-- LABEL HARI --}}
+                            <div class="text-muted small mb-1">
+                                Hari ke-{{ $i }}
+                            </div>
+
+                            {{-- PROGRAM --}}
+                            <div class="fw-bold text-primary">
+                                {{ $rule->{'hari_'.$i} }}
+                            </div>
+
+                            {{-- LATIHAN --}}
+                            <div class="text-muted mt-1">
+                                @if(!empty($rule->{'latihan_'.$i}))
+                                    {{ $rule->{'latihan_'.$i} }}
+                                @else
+                                    <em>Tidak ada latihan</em>
+                                @endif
+                            </div>
+
+                        </div>
+                    </div>
+                    @endif
+                @endfor
+            </div>
 
         </div>
     </div>
