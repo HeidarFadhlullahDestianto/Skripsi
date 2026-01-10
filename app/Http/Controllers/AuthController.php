@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     // ======================
-    // REGISTER
+    // SHOW REGISTER
     // ======================
     public function showRegister()
     {
         return view('auth.register');
     }
 
+    // ======================
+    // REGISTER (OPS I 2)
+    // ======================
     public function register(Request $request)
     {
         $request->validate([
@@ -42,7 +45,7 @@ class AuthController extends Controller
             $request->foto->move(public_path('uploads/user'), $fotoName);
         }
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -51,24 +54,21 @@ class AuthController extends Controller
             'role' => 'user',
         ]);
 
-        Auth::login($user);
-
-        return redirect()->route('user.dashboard');
+        // ❌ TIDAK AUTO LOGIN
+        return redirect()->route('home')
+            ->with('success', 'Registrasi berhasil, silakan login.');
     }
 
     // ======================
     // LOGIN
     // ======================
-    public function showLogin()
-    {
-        return view('auth.login');
-    }
-
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
             $user = Auth::user();
 
             if ($user->role === 'admin') {
@@ -96,7 +96,7 @@ class AuthController extends Controller
     }
 
     // ======================
-    // DASHBOARD
+    // DASHBOARD ADMIN
     // ======================
     public function dashboardAdmin()
     {
@@ -104,6 +104,9 @@ class AuthController extends Controller
         return view('admin.dashboard', compact('sliders'));
     }
 
+    // ======================
+    // DASHBOARD USER
+    // ======================
     public function dashboardUser()
     {
         $sliders = Slider::latest()->get();
