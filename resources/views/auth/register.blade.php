@@ -126,7 +126,7 @@
 
         <div class="text-center mt-3">
             <small>Sudah punya akun?
-                <a href="{{ route('login') }}" class="text-decoration-none fw-semibold">
+                <a href="{{ route('home') }}" class="text-decoration-none fw-semibold">
                     Login
                 </a>
             </small>
