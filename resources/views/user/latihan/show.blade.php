@@ -39,6 +39,7 @@
     }
 }
 
+/* CONTAINER */
 .content-wrapper {
     background: rgba(255, 255, 255, 0.95);
     padding: 25px;
@@ -48,6 +49,7 @@
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
+/* TITLE */
 .title {
     font-weight: bold;
     font-size: 26px;
@@ -55,19 +57,35 @@
     margin-bottom: 25px;
 }
 
+/* SUBTITLE */
 .subtitle {
     margin-top: 25px;
     font-size: 20px;
     font-weight: bold;
 }
 
+/* TEXT FIX — INI YANG PALING PENTING */
 .description,
 .steps-text {
     font-size: 16px;
     line-height: 1.7;
     color: #000;
+
+    /* FIX TEKS NEMBUS CONTAINER */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
 }
 
+/* JARAK ANTAR BARIS STEP */
+.steps-text br {
+    display: block;
+    content: "";
+    margin-bottom: 6px;
+}
+
+/* IMAGE */
 .image-wrapper {
     max-width: 350px;
     margin: auto;
@@ -78,13 +96,16 @@
     border-radius: 12px;
 }
 
+/* MOBILE */
 @media (max-width: 576px) {
     .content-wrapper {
         padding: 15px;
     }
+
     .image-wrapper {
         max-width: 260px;
     }
+
     .title {
         font-size: 22px;
     }
