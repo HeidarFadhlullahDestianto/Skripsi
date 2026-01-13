@@ -57,6 +57,9 @@
 <a href="{{ route('expert.saved') }}"class="{{ request()->routeIs('expert.saved') || request()->routeIs('expert.process') || request()->routeIs('expert.detail') ? 'active' : '' }}">
 ⭐ Tersimpan
 </a>
+<a href="{{ route('progress.index') }}" class="{{ request()->routeIs('progress.index') || request()->routeIs('progress.detail') ? 'active' : '' }}">
+   📊 Progress Badan
+</a>
 
        
         @endif

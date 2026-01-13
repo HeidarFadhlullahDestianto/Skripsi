@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="pt-5 pt-md-0">
 <div class="container mt-4">
 
     @if(!empty($sliders) && count($sliders) > 0)

@@ -225,7 +225,7 @@ min-height: 100vh;
 .sidebar nav a {
   text-decoration: none;
   color: white;
-  font-size: 18px;        /* ⬅️ BESARIN TULISAN */
+  font-size: 16px;        /* ⬅️ BESARIN TULISAN */
   font-weight: 700; 
   transition: background 0.3s;
   padding: 8px;

@@ -51,7 +51,7 @@
             @endforelse
 
             <a href="{{ route('user.jadwal.index') }}"
-            class="inline-block mt-6 text-blue-600 font-semibold">
+            class="btn btn-primary">
                 ← Kembali ke Jadwal
             </a>
         </div>

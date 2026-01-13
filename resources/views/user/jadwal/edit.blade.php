@@ -184,11 +184,11 @@
         <div class="grid-2">
             <div>
                 <label>Set</label>
-                <input type="number" name="sets[]" placeholder="3">
+                <input type="number" name="sets[]" placeholder="3" required>
             </div>
             <div>
                 <label>Reps</label>
-                <input type="number" name="reps[]" placeholder="12">
+                <input type="number" name="reps[]" placeholder="12" required>
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@ use App\Http\Controllers\UserScheduleController;
 use App\Http\Controllers\Admin\ImportController;
 use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\ProgressController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,7 +88,12 @@ Route::middleware('auth')->group(function () {
     // ---------------- ADMIN - NEWS CRUD ----------------
     Route::get('/newsaja', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{slug}', [NewsController::class, 'show'])->name('news.show');
-    
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/progress', [ProgressController::class, 'index'])->name('progress.index');
+    Route::post('/progress', [ProgressController::class, 'store'])->name('progress.store');
+});
     // ===========================
     // ADMIN ROUTE — PREFIX ADMIN
     // ===========================
